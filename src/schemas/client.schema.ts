@@ -2,21 +2,23 @@ import { z } from 'zod';
 
 const clientSchema = z.object({
   id: z.number(),
-  nome: z.string().min(1).max(45),
+  name: z.string().min(1).max(45),
   email: z.string().email().max(45),
   password: z.string().max(120),
-  telefone: z.string().max(15),
-  dataRegistro: z.string(),
+  telephone: z.string().max(15),
+  dateRegistration: z.string(),
 });
 
 const clientRequestSchema = clientSchema.omit({
   id: true, 
-  dataRegistro: true
+  dateRegistration: true
 });
 
 const clientResponseSchema = clientSchema.omit({
   password:true
 });
 
+const clientUpdateSchema = clientRequestSchema.partial()
 
-export { clientSchema, clientRequestSchema, clientResponseSchema };
+
+export { clientSchema, clientRequestSchema, clientResponseSchema, clientUpdateSchema };

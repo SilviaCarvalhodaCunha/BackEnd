@@ -1,0 +1,10 @@
+{
+    "type": "postgres",
+    "url": "postgres://User:121916@localhost:5432/backend",
+    "entities": ["src/entities/**/*.ts"],
+    "migrations": ["src/migrations/**/*.ts"],
+    "cli": {
+      "migrationsDir": "src/migrations"
+    }
+  }
+  

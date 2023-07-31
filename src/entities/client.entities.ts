@@ -1,26 +1,32 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn } from 'typeorm';
-import { Contact } from './contact.entities';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  CreateDateColumn,
+} from "typeorm";
+import { Contact } from "./contact.entities";
 
 @Entity("clients")
 export class Client {
   @PrimaryGeneratedColumn("increment")
   id: number;
 
-  @Column({type: "varchar", length: 45})
-  nome: string;
+  @Column({ type: "varchar", length: 45 })
+  name: string;
 
-  @Column({type: "varchar", length: 45, unique: true})
+  @Column({ type: "varchar", length: 45, unique: true })
   email: string;
 
-  @Column({type: "varchar", length: 120})
+  @Column({ type: "varchar", length: 120 })
   password: string;
 
-  @Column({type: "varchar", length: 15})
-  telefone: string;
+  @Column({ type: "varchar", length: 15 })
+  telephone: string;
 
-  @CreateDateColumn({type: 'date'})
-  dataRegistro: string | Date;
+  @CreateDateColumn({ type: "date" })
+  dateRegistration: string | Date;
 
-  @OneToMany(() => Contact, (contato) => contato.cliente)
-  contatos: Contact[];
+  @OneToMany(() => Contact, (contact) => contact.client)
+  contacts: Contact[];
 }
