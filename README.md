@@ -69,7 +69,28 @@ O servidor será executado na porta 3000.
      }
      ```
 
-2. **Listar informações do cliente autenticado**
+2. **Realizando Login**
+
+   - Método: POST
+   - URL: http://localhost:3000/login
+   - Body (JSON):
+
+     ```json
+     {
+       "email": "cliente@exemplo.com",
+       "password": "senha123"
+     }
+     ```
+
+   - Retorno (JSON):
+
+     ```json
+     {
+       "token": "seu-token-de-autenticação"
+     }
+     ```
+
+3. **Listar informações do cliente autenticado**
 
    - Método: GET
    - URL: http://localhost:3000/client
@@ -91,10 +112,10 @@ O servidor será executado na porta 3000.
      }
      ```
 
-3. **Atualizar informações do cliente autenticado**
+4. **Atualizar informações do cliente autenticado**
 
    - Método: PATCH
-   - URL: http://localhost:3000/client
+   - URL: http://localhost:3000/client/:id
    - Header:
 
      ```plaintext
@@ -122,10 +143,10 @@ O servidor será executado na porta 3000.
      }
      ```
 
-4. **Excluir cliente autenticado**
+5. **Excluir cliente autenticado**
 
    - Método: DELETE
-   - URL: http://localhost:3000/client
+   - URL: http://localhost:3000/client/:id
    - Header:
 
      ```plaintext
