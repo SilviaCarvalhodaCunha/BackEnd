@@ -6,8 +6,14 @@ import { AppError } from "../../error";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const createSessionServices = async (loginData: Tlogin): Promise<string> => {
-  const userRepository: Repository<Client> = AppDataSource.getRepository(Client);
+interface SessionResponse {
+  token: string;
+  userName: string;
+}
+
+const createSessionServices = async (loginData: Tlogin): Promise<SessionResponse> => {
+  const userRepository: Repository<Client> =
+    AppDataSource.getRepository(Client);
 
   const user: Client | null = await userRepository.findOne({
     where: { email: loginData.email },
@@ -22,8 +28,6 @@ const createSessionServices = async (loginData: Tlogin): Promise<string> => {
     user.password
   );
 
-  console.log(comparePassword)
-
   if (!comparePassword) {
     throw new AppError("Invalid credentials", 401);
   }
@@ -32,14 +36,18 @@ const createSessionServices = async (loginData: Tlogin): Promise<string> => {
     {
       userName: user.name,
     },
-      process.env.SECRET_KEY!,
+    process.env.SECRET_KEY!,
     {
       expiresIn: process.env.EXPIRES_IN,
       subject: String(user.id),
     }
   );
 
-  return token;
+
+  return {
+    token,
+    userName: user.name
+  };
 };
 
 export default createSessionServices;
