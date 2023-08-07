@@ -9,13 +9,14 @@ Este projeto é uma aplicação de backend que simula uma agenda de contatos. El
 1. Clone o repositório para o seu computador
 
 2. Instale as dependências do projeto:
+
 ```shell
 npm install
 ```
 
 3. Crie um arquivo `.env` na raiz do projeto como no `.env.example` substituindo os dados
 
-4. Crie um banco de dados PostgreSQL com o memso nome declarado no arquivo `.env` 
+4. Crie um banco de dados PostgreSQL com o memso nome declarado no arquivo `.env`
 
 5. Execute as migrações para criar as tabelas no banco de dados:
 
@@ -27,14 +28,13 @@ npm run typeorm migration:generate ./src/migrations/CreateTables -- -d ./src/dat
 npm run typeorm migration:run -- -d ./src/data-source.ts
 ```
 
-
 ## Uso
 
 Para iniciar o servidor da aplicação, utilize o seguinte comando:
+
 ```shell
 npm run dev
 ```
-
 
 O servidor será executado na porta 3000.
 
@@ -42,118 +42,118 @@ O servidor será executado na porta 3000.
 
 ### Cliente
 
-1. **Registrar um novo cliente**
+1.  **Registrar um novo cliente**
 
-   - Método: POST
-   - URL: http://localhost:3000/client
-   - Body (JSON):
+    - Método: POST
+    - URL: http://localhost:3000/client
+    - Body (JSON):
 
-     ```json
-     {
-       "name": "Nome do Cliente",
-       "email": "cliente@email.com",
-       "password": "senha123",
-       "telephone": "(XX) XXXXX-XXXX"
-     }
-     ```
+      ```json
+      {
+        "name": "Nome do Cliente",
+        "email": "cliente@email.com",
+        "password": "senha123",
+        "telephone": "(XX) XXXXX-XXXX"
+      }
+      ```
 
-   - Retorno (JSON):
+    - Retorno (JSON):
 
-     ```json
-     {
-       "id": 1,
-       "name": "Nome do Cliente",
-       "email": "cliente@email.com",
-       "telephone": "(XX) XXXXX-XXXX",
-       "dateRegistration": "2023-07-30"
-     }
-     ```
+      ```json
+      {
+        "id": 1,
+        "name": "Nome do Cliente",
+        "email": "cliente@email.com",
+        "telephone": "(XX) XXXXX-XXXX",
+        "dateRegistration": "2023-07-30"
+      }
+      ```
 
-2. **Realizando Login**
+2.  **Realizando Login**
 
-   - Método: POST
-   - URL: http://localhost:3000/login
-   - Body (JSON):
+    - Método: POST
+    - URL: http://localhost:3000/login
+    - Body (JSON):
 
-     ```json
-     {
-       "email": "cliente@exemplo.com",
-       "password": "senha123"
-     }
-     ```
+      ```json
+      {
+        "email": "cliente@exemplo.com",
+        "password": "senha123"
+      }
+      ```
 
-   - Retorno (JSON):
+    - Retorno (JSON):
 
-     ```json
-     {
-       "token": "seu-token-de-autenticação"
-     }
-     ```
+      ```json
+      {        
+        "token": "tokendeautorização", 
+      }
+      ```
 
-3. **Listar informações do cliente autenticado**
+3.  **Listar informações do cliente autenticado**
 
-   - Método: GET
-   - URL: http://localhost:3000/client
-   - Header:
+    - Método: GET
+    - URL: http://localhost:3000/client
+    - Header:
 
-     ```plaintext
-     Authorization: Bearer SEU_TOKEN_DE_AUTORIZACAO
-     ```
+      ```plaintext
+      Authorization: Bearer SEU_TOKEN_DE_AUTORIZACAO
+      ```
 
-   - Retorno (JSON):
+    - Retorno (JSON):
 
-     ```json
-     {
-       "id": 1,
-       "name": "Nome do Cliente",
-       "email": "cliente@email.com",
-       "telephone": "(XX) XXXXX-XXXX",
-       "dateRegistration": "2023-07-30"
-     }
-     ```
+      ```json
+      {
+        "id": 1,
+        "name": "Nome do Cliente",
+        "email": "cliente@email.com",
+        "telephone": "(XX) XXXXX-XXXX",
+        "dateRegistration": "2023-07-30"
+      }
+      ```
 
-4. **Atualizar informações do cliente autenticado**
+4.  **Atualizar informações do cliente autenticado**
 
-   - Método: PATCH
-   - URL: http://localhost:3000/client/:id
-   - Header:
+    - Método: PATCH
+    - URL: http://localhost:3000/client/:id
+    - Header:
 
-     ```plaintext
-     Authorization: Bearer SEU_TOKEN_DE_AUTORIZACAO
-     ```
+      ```plaintext
+      Authorization: Bearer SEU_TOKEN_DE_AUTORIZACAO
+      ```
 
-   - Body (JSON):
+    - Body (JSON):
 
-     ```json
-     {
-       "name": "Novo Nome",
-       "telephone": "(XX) XXXXX-XXXX"
-     }
-     ```
+      ```json
+      {
+        "name": "Novo Nome",
+        "telephone": "(XX) XXXXX-XXXX"
+      }
+      ```
 
-   - Retorno (JSON):
+    - Retorno (JSON):
 
-     ```json
-     {
-       "id": 1,
-       "name": "Novo Nome",
-       "email": "cliente@email.com",
-       "telephone": "(XX) XXXXX-XXXX",
-       "dateRegistration": "2023-07-30"
-     }
-     ```
+      ```json
+      {
+        "id": 1,
+        "name": "Novo Nome",
+        "email": "cliente@email.com",
+        "telephone": "(XX) XXXXX-XXXX",
+        "dateRegistration": "2023-07-30"
+      }
+      ```
 
-5. **Excluir cliente autenticado**
+5.  **Excluir cliente autenticado**
 
-   - Método: DELETE
-   - URL: http://localhost:3000/client/:id
-   - Header:
+    - Método: DELETE
+    - URL: http://localhost:3000/client/:id
+    - Header:
 
-     ```plaintext
-     Authorization: Bearer SEU_TOKEN_DE_AUTORIZACAO
-     ```
+      ```plaintext
+      Authorization: Bearer SEU_TOKEN_DE_AUTORIZACAO
+      ```
 
-   - Retorno: Status 204 No Content
+    - Retorno: Status 204 No Content
 
 ### Contato
 
@@ -245,6 +245,7 @@ O servidor será executado na porta 3000.
      {
        "id": 1,
        "name": "Novo Nome do Contato",
+     ```
 
 4. **Excluir um contato do cliente autenticado**
 
@@ -261,5 +262,3 @@ O servidor será executado na porta 3000.
 ## Autor
 
 Silvia Carvalho - [silviacarvalhodacunha@gmail.com](mailto:silviacarvalhodacunha@gmail.com)
-
-

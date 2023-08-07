@@ -27,6 +27,7 @@ export class Client {
   @CreateDateColumn({ type: "date" })
   dateRegistration: string | Date;
 
-  @OneToMany(() => Contact, (contact) => contact.client)
+  @OneToMany(() => Contact, (contact) => contact.client, { cascade: true, onDelete: 'CASCADE' })
   contacts: Contact[];
+
 }

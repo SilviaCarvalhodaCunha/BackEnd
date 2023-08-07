@@ -8,9 +8,9 @@ const createSessionControllers = async (
 ): Promise<Response> => {
   const loginData: Tlogin = req.body;
 
-  const user = await createSessionServices(loginData);
+  const token = await createSessionServices(loginData);
 
-  return res.status(200).json({ user });
+  return res.status(200).json(token);
 };
 
 export { createSessionControllers };

@@ -8,7 +8,6 @@ import jwt from "jsonwebtoken";
 
 interface SessionResponse {
   token: string;
-  userName: string;
 }
 
 const createSessionServices = async (loginData: Tlogin): Promise<SessionResponse> => {
@@ -43,11 +42,7 @@ const createSessionServices = async (loginData: Tlogin): Promise<SessionResponse
     }
   );
 
-
-  return {
-    token,
-    userName: user.name
-  };
+  return {token}
 };
 
 export default createSessionServices;
