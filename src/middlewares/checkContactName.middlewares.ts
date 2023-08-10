@@ -11,21 +11,18 @@ const checkContactNameMiddleware = async (
   const { name } = req.body;
   const clientId = res.locals.user.id;
 
-  if (!name) {
-    next();
-    return;
-  }
+  if (name) {
+    const contactRepository = AppDataSource.getRepository(Contact);
+    const existingContact = await contactRepository.findOne({
+      where: { client: { id: clientId }, name: name },
+    });
 
-  const contactRepository = AppDataSource.getRepository(Contact);
-  const existingContact = await contactRepository.findOne({
-    where: { client: { id: clientId }, name: name },
-  });
-
-  if (existingContact) {
-    throw new AppError(
-      "Contact with the same name already exists for this user",
-      409
-    );
+    if (existingContact) {
+      throw new AppError(
+        "Já existe um contato com o mesmo nome para este usuário.",
+        409
+      );
+    }
   }
 
   next();
